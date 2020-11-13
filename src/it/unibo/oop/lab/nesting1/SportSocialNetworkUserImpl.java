@@ -123,10 +123,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * @return true if a user likes sport s
      */
     public boolean hasSport(final Sport s) {
-        if(this.sports.contains(s)) {
-        	return true;
-        }
-    	return false;
+        return this.sports.contains(s);
     }
 
     /*
