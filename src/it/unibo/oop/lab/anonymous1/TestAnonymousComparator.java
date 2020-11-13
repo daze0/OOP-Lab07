@@ -1,6 +1,8 @@
 package it.unibo.oop.lab.anonymous1;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import it.unibo.oop.lab.socialnetwork.SocialNetworkUser;
@@ -8,7 +10,7 @@ import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
 import it.unibo.oop.lab.socialnetwork.User;
 
 /**
- * Instruction: define two comparators as anonymous classes in oder to sort a
+ * Instruction: define two comparators as anonymous classes in order to sort a
  * list of user in the appropriate way.
  * 
  * 1) Study carefully the test in order to understand it
@@ -31,7 +33,7 @@ public final class TestAnonymousComparator {
      *            the expected list of users
      * @param result
      *            the list of users returned by the test
-     * @return true is result's users are in the same order as expected's users
+     * @return true if result's users are in the same order as expected's users
      */
     public static boolean checkUserOrder(final List<User> expected, final List<User> result) {
         for (int i = 0; i < expected.size(); i++) {
@@ -64,6 +66,7 @@ public final class TestAnonymousComparator {
         dwashington.addFollowedUser("writers", mgladwell);
         dwashington.addFollowedUser("writers", ntaleb);
         final List<User> denzelUsers = dwashington.getFollowedUsers();
+        
         /*
          * Order denzel's followed users incrementally by age:
          * 
@@ -74,7 +77,11 @@ public final class TestAnonymousComparator {
          * 
          * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 41
          */
-        // TODO
+        Collections.sort(denzelUsers, new Comparator<User>() {
+        	public int compare(User userA, User userB) {
+        		return userA.getAge() - userB.getAge();
+        	}
+        });
         /*
          * expected Result
          */
@@ -97,6 +104,7 @@ public final class TestAnonymousComparator {
         mrossi.addFollowedUser("economists", ntaleb);
         mrossi.addFollowedUser("actors i like", dwashington);
         final List<User> rossiUsers = mrossi.getFollowedUsers();
+        
         /*
          * Order rossi's followed users by age in decreasing order:
          * 
@@ -105,7 +113,11 @@ public final class TestAnonymousComparator {
          * NOTE: in order to sort a list think about a method of the utility
          * class Collections
          */
-        // TODO
+        Collections.sort(rossiUsers, new Comparator<User>() {
+        	public int compare(User userA, User userB) {
+        		return userB.getAge() - userA.getAge();
+        	}
+        });
         /*
          * expected Result
          */
